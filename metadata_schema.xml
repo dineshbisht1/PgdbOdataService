@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://schemas.microsoft.com/ado/2007/06/edmx ">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="MyDBSchema" xmlns="http://schemas.microsoft.com/ado/2006/04/edm"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://schemas.microsoft.com/ado/2006/04/edm ">
+			<EntityContainer Name="AllOpportunities" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="opportunities" EntityType="MyDBSchema.Opportunity"/>
+				<EntitySet Name="products" EntityType="MyDBSchema.Product"/>
+			</EntityContainer>
+			<EntityType Name="Opportunity">
+				<Key>
+					<PropertyRef Name="name"/>
+				</Key>
+				<Property Name="name" Type="Edm.String" Nullable="false" MaxLength="256"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="description" Type="Edm.String" Nullable="true" MaxLength="256"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="type" Type="Edm.String" Nullable="true" MaxLength="256"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="leadsource" Type="Edm.String" Nullable="true" MaxLength="256"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="accountid" Type="Edm.String" Nullable="false" MaxLength="256"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="amount" Type="Edm.Double" Nullable="false"
+					Precision="3"/>
+				<Property Name="closedate" Type="Edm.DateTime" Nullable="false"
+					Precision="3"/>
+				<Property Name="stagename" Type="Edm.String" Nullable="false"
+					Unicode="true" Maxlength="50"/>
+			</EntityType>
+			<EntityType Name="Product">
+				<Key>
+					<PropertyRef Name="id"/>
+				</Key>
+				<Property Name="id" Type="Edm.Int32" Nullable="false"
+					/>
+				<Property Name="name" Type="Edm.String" Nullable="false" MaxLength="20"
+					Unicode="true" FixedLength="false"/>
+				<Property Name="price" Type="Edm.Double" Nullable="false"
+					Precision="3"/>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
