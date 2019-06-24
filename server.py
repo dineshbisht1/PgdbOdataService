@@ -16,8 +16,8 @@ from pyslet.odata2.server import ReadOnlyServer
 
 from pgsql_entitycontainer import PgSQLEntityContainer
 
-#from influxdbmeta import generate_metadata
-#from influxdbds import InfluxDBEntityContainer
+#from pgdbmeta import generate_metadata
+#from pgdbds import PgDBEntityContainer
 # easy to configure constants at the top of your script
 #DBCONTAINER_CLASS=pgsql_entitycontainer.PgSQLEntityContainer
 DBCONTAINER_ARGS={
@@ -71,15 +71,9 @@ class FileExistsError(IOError):
 
 
 def load_metadata(config):
-    """Regenerate and load the metadata file and connects the InfluxDBEntityContainer."""
+    """Regenerate and load the metadata file and connects the PgDBEntityContainer."""
     metadata_filename = config.get('metadata', 'metadata_file')
     dsn = config.get('pgdb', 'dsn')
-
-    #if config.getboolean('metadata', 'autogenerate'):
-    #    logger.info("Generating OData metadata xml file from InfluxDB metadata")
-    #    metadata = generate_metadata(dsn)
-    #    with open(metadata_filename, 'wb') as f:
-    #        f.write(metadata)
 
     doc = edmx.Document()
     with open(metadata_filename, 'rb') as f:
@@ -119,17 +113,15 @@ def get_sample_config():
     config.set('server', 'server_listen_interface', '127.0.0.1')
     config.set('server', 'server_listen_port', '8080')
     config.add_section('metadata')
-    config.set('metadata', '; set autogenerate to "no" for quicker startup of the server if you know your influxdb structure has not changed')
     config.set('metadata', 'autogenerate', 'yes')
     config.set('metadata', '; metadata_file specifies the location of the metadata file to generate')
     config.set('metadata', 'metadata_file', 'metadata_schema.xml')
     config.add_section('pgdb')
-    config.set('pgdb', '; supported schemes include https+influxdb:// and udp+influxdb://')
     config.set('pgdb', '; user:pass in this dsn is used for generating metadata')
     config.set('pgdb', 'dsn', 'postgres://postgres:root123@localhost:5432')
     config.set('pgdb', 'max_items_per_query', '50')
     config.set('pgdb', '; authentication_required will pass through http basic auth username')
-    config.set('pgdb', '; and password to influxdb')
+    config.set('pgdb', '; and password to db')
     config.set('pgdb', 'authentication_required', 'no')
     return config
 
