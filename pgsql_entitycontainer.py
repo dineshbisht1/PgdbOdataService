@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #   Postgres SQL container for pyslet Odata implementation
-#   Copyright (C), 2014 Chris Daley <chebizarro@gmail.com>
+#   Copyright (C), 2019 Dinesh Singh Bisht <dinesh.s.bisht@gmail.com>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
